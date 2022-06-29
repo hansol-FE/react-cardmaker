@@ -1,23 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Login from './components/login/Login';
+import Maker from './components/maker/Maker';
 
-function App() {
+import styles from './app.module.css';
+
+function App({authService}) {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className={styles.app}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" >
+            <Login authService={authService} />
+          </Route>
+          <Route exact path="/maker" >
+            <Maker authService={authService} />
+          </Route>
+        </Switch>
+      </BrowserRouter>
     </div>
   );
 }
